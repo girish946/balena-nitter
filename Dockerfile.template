@@ -1,0 +1,31 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine:3.12-build
+
+# Set the working directory to /usr/src/app
+WORKDIR /usr/src/app
+
+# Install dependencies
+RUN apk update
+RUN install_packages git gcc libsass-dev redis
+
+# Copy the source code to working directory
+COPY . ./
+
+# Clone Nim
+RUN git clone https://github.com/nim-lang/Nim.git
+# Build nim binary
+RUN cd Nim; ./build_all.sh; cd ..
+# Add Nim binaries to PATH
+ENV PATH="/usr/src/app/Nim/bin:${PATH}"
+
+# Cline nitter
+RUN git clone https://github.com/zedeus/nitter
+# Replace default Nitter config
+RUN cp nitter.conf nitter/
+# Build Nitter
+RUN bash build-nitter.sh
+
+ENV UDEV=1
+
+# Start nitter
+CMD ["bash", "start-nitter.sh"]
+
