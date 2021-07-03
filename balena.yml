@@ -1,7 +1,7 @@
 name: balena-nitter
 type: sw.application
 description: >-
-  Setup your own instance of nitter, an alternative front end for twitter.
+  Setup your own instance of nitter, an alternate front-end for twitter.
 post-provisioning: >-
   ## Usage instructions
   Fork this fleet and deploy the project on a balenaCloud application. 
