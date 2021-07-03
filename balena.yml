@@ -1,0 +1,25 @@
+name: balena-nitter
+type: sw.application
+description: >-
+  Setup your own instance of nitter, an alternative front end for twitter.
+post-provisioning: >-
+  ## Usage instructions
+  Fork this fleet and deploy the project on a balenaCloud application. 
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/girish946/balena-nitter'
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://github.com/zedeus/nitter/raw/master/public/logo.png
+data:
+  defaultDeviceType: raspberry-pi
+  supportedDeviceTypes:
+    - raspberry-pi
+    - raspberry-pi2
+    - raspberrypi3
+    - raspberrypi4-64
+version: 1.0.0
